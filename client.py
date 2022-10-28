@@ -31,6 +31,23 @@ flashNumberLabel = None
 gameOver = False
 
 
+def showWrongMarking():
+    global ticketGrid
+    global flashNumberList
+
+    # changing background color of number which is not flash yet on screen
+    for row in ticketGrid:
+        for numberBox in row:
+            if(numberBox['text']):
+                if(int(numberBox['text']) not in flashNumberList):
+                    if(platform.system() == 'Darwin'):
+                        # For Mac Users
+                        numberBox.configure(state='disabled', disabledbackground='#f48fb1',
+                            disabledforeground="white")
+                    else:
+                        # For Windows Users
+                        numberBox.configure(state='disabled', background='#f48fb1',
+                            foreground="white")
 
 def markNumber(button):
     global markedNumberList
